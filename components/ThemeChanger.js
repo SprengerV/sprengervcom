@@ -5,6 +5,7 @@ import { useTheme } from 'next-themes';
 const ThemeChanger = () => {
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme()
+    const opposite = theme === 'dark' ? 'Light' : 'Dark'
 
     useEffect(() => {
         setMounted(true);
@@ -14,12 +15,14 @@ const ThemeChanger = () => {
         return null
     }
 
-    return (
-        <div>
-            <button onClick={ () => setTheme('light') }>Light Mode</button>
-            <button onClick={ () => setTheme('dark') }>Dark Mode</button>
-        </div>
-    )
+    return (<>
+        <button 
+            onClick={ () => setTheme(opposite.toLowerCase()) }
+            className="btn btn-outline-secondary"
+        >
+            { opposite } Mode
+        </button>
+    </>)
 }
 
 export default ThemeChanger
